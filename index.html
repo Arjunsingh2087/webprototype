@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anti-Theft App</title>
+
+  <!-- CSS -->
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: #fff;
+    }
+
+    /* LOGO */
+    .logo {
+      font-size: 26px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      color: #38bdf8;
+    }
+
+    /* LOGIN SCREEN */
+    .login-screen {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .login-box {
+      background: #6d7eca;
+      padding: 30px;
+      border-radius: 14px;
+      width: 320px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      text-align: center;
+    }
+
+    .login-box h2 {
+      margin-bottom: 20px;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      background: #2563eb;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .btn:hover { background: #1d4ed8; }
+
+    /* DASHBOARD */
+    .dashboard {
+      display: none;
+    }
+
+    header {
+      padding: 15px;
+      background: #020617;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .container {
+      padding: 15px;
+      padding-bottom: 70px;
+    }
+
+    .card {
+      background: #020617;
+      border-radius: 14px;
+      padding: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+    }
+
+    .card h3 { color: #38bdf8; }
+
+    .alert {
+      background: #7f1d1d;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .photos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .photo {
+      background: #334155;
+      height: 80px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #f3f3f4;
+      display: flex;
+      justify-content: space-around;
+      padding: 12px 0;
+    }
+
+    footer button {
+      background: none;
+      border: none;
+      color: #720f0f;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    footer button.active { color: #38bdf8; }
+  </style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login-screen" id="loginScreen">
+  <div class="login-box">
+    <div class="logo">🛡 Anti-Theft</div>
+    <h2>Secure Login</h2>
+    <input type="text" id="username" placeholder="Username" />
+    <input type="password" id="password" placeholder="Password" />
+    <button class="btn" onclick="login()">Login</button>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="dashboard" id="dashboard">
+  <header>
+    <div class="logo">🛡 Anti-Theft</div>
+    <button class="btn" style="width:auto;" onclick="logout()">Logout</button>
+  </header>
+
+  <div class="container">
+
+    <div class="card">
+      <h3>Unusual Activities</h3>
+      <div class="alert">❗ Wrong PIN Attempt – Image Captured</div>
+      <div class="alert">❗ SIM Changed – Location Updated</div>
+    </div>
+
+    <div class="card">
+      <h3>Captured Photos</h3>
+      <div class="photos">
+        <div class="photo">Photo</div>
+        <div class="photo">Photo</div>
+        <div class="photo">Photo</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Live Location</h3>
+      <p>📍 Last Known Location: Bangalore</p>
+      <button class="btn">View Live Map</button>
+    </div>
+
+    <div class="card">
+      <h3>Police Help</h3>
+      <button class="btn" onclick="openPolice()">Lodge Police Complaint</button>
+      <br><br>
+      <button class="btn">Nearby Police Stations</button>
+    </div>
+
+  </div>
+
+  <footer>
+    <button class="active">Dashboard</button>
+    <button>Location</button>
+    <button>Photos</button>
+    <button>Settings</button>
+  </footer>
+</div>
+
+<!-- JAVASCRIPT -->
+<script>
+  function login() {
+    const u = document.getElementById("username").value;
+    const p = document.getElementById("password").value;
+
+    if (u && p) {
+      document.getElementById("loginScreen").style.display = "none";
+      document.getElementById("dashboard").style.display = "block";
+    } else {
+      alert("Please enter login details");
+    }
+  }
+
+  function logout() {
+    document.getElementById("dashboard").style.display = "none";
+    document.getElementById("loginScreen").style.display = "flex";
+  }
+
+  function openPolice() {
+    window.open("https://www.digitalpolicecitizenservices.gov.in/", "_blank");
+  }
+</script>
+
+</body>
+</html>
